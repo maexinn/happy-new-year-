@@ -1,40 +1,109 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <title>Happy New Year!!</title>
-  <style>
-    /* The letter box — set a max-height or height, then enable vertical scrolling */
-    .letter {
-      width: 480px;
-      max-height: 60vh;        /* or use height: 400px; */
-      padding: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      background: #fff;
-      box-sizing: border-box;
-      overflow-y: auto;        /* enable scrolling when content overflows */
-      overflow-x: hidden;      /* prevent horizontal scroll */
-      -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+<title>woii</title>
+<style>
+    body {
+        background-color: #ffe6f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
     }
-
-    /* If this .letter is a flex child, allow it to shrink so max-height works:
-       container { display: flex; } */
+    .envelope {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        background: #ff99cc;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .flap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: #ff66b3;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        transform-origin: top;
+        transition: transform 1s ease;
+        z-index: 2;
+    }
     .letter {
-      min-height: 0;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background: white;
+        padding: 20px;
+        box-sizing: border-box;
+        transform: translateY(100%);
+        transition: transform 1s ease 0.5s;
+        text-align: center;
+        font-size: 18px;
+
+        /* ADDED: make the letter scrollable when its content overflows */
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+    }
+    .envelope.open .flap {
+        transform: rotateX(-180deg);
+    }
+    .envelope.open .letter {
+        transform: translateY(0);
+    }
+    button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background: #ff66b3;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
     }
 
     /* Optional: light custom scrollbar for WebKit browsers */
-    .letter::-webkit-scrollbar { width: 10px; }
+    .letter::-webkit-scrollbar { width: 8px; }
     .letter::-webkit-scrollbar-thumb {
       background: rgba(0,0,0,0.15);
       border-radius: 6px;
     }
-  </style>
+</style>
 </head>
 <body>
-  <div class="letter" role="article" aria-label="Letter">
-    <h2>Happy New Year Liammm!!<h2>
+    <div>
+        <div class="envelope" id="envelope">
+            <div class="flap"></div>
+            <!-- ADDED tabindex so keyboard users can focus & scroll the letter -->
+            <div class="letter" tabindex="0">Boi.<br><br>Hiii Liammm happy new yearuhhhh!!!
+
+            I just wanna say tysm for being my friend twin you're like literally so goated and so cool and so amazingu and thanks for always making me laugh.
+
+            I'm really glad that even though we stopped talking for months you still never forgot about me nor did i forget about you
+
+            I hope this new year gives you more blessings and may it be much more better than wtv happened in 2025
+
+            I luh yuh so muh and that's all (⁠≧⁠▽⁠≦⁠)
+
+                      -THE one and only goat; maeeeee<br>bombaclatttt</div>
+        </div>
+        <div style="text-align:center;">
+            <button onclick="openEnvelope()">Open 💌</button>
+        </div>
+    </div>
+
+<script>
+    function openEnvelope() {
+        document.getElementById("envelope").classList.toggle("open");
+    }
+</script>
+</body>
+</html>    <h2>Happy New Year Liammm!!<h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. [repeat content many times to overflow]</p>
     <p>
 
