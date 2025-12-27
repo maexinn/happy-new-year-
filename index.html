@@ -1,204 +1,106 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
-<title> Happy New Year!! </title>
-
+<title>Happy New Year!!</title>
 <style>
-
-    body {
-
-        background-color: #ffe6f0;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        height: 100vh;
-
-        font-family: Arial, sans-serif;
-
-    }
-
-    .envelope {
-
-        position: relative;
-
-        width: 300px;
-
-        height: 200px;
-
-        background: #ff99cc;
-
-        border-radius: 10px;
-
-        overflow: hidden;
-
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-
-    }
-
-    .flap {
-
-        position: absolute;
-
-        top: 0;
-
-        left: 0;
-
-        width: 100%;
-
-        height: 50%;
-
-        background: #ff66b3;
-
-        clip-path: polygon(0 0, 100% 0, 50% 100%);
-
-        transform-origin: top;
-
-        transition: transform 1s ease;
-
-        z-index: 2;
-
-    }
-
-    .letter {
-
-        position: absolute;
-
-        bottom: 0;
-
-        width: 100%;
-
-        height: 100%;
-
-        background: white;
-
-        padding: 20px;
-
-        box-sizing: border-box;
-
-        transform: translateY(100%);
-
-        transition: transform 1s ease 0.5s;
-
-        text-align: center;
-
-        font-size: 18px;
-
-
-        /* ADDED: make the letter scrollable when its content overflows */
-
-        overflow-y: auto;
-
-        overflow-x: hidden;
-
-        -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
-
-    }
-
-    .envelope.open .flap {
-
-        transform: rotateX(-180deg);
-
-    }
-
-    .envelope.open .letter {
-
-        transform: translateY(0);
-
-    }
-
-    button {
-
-        margin-top: 20px;
-
-        padding: 10px 20px;
-
-        background: #ff66b3;
-
-        color: white;
-
-        border: none;
-
-        border-radius: 5px;
-
-        cursor: pointer;
-
-        font-size: 16px;
-
-    }
-
-
-    /* Optional: light custom scrollbar for WebKit browsers */
-
-    .letter::-webkit-scrollbar { width: 8px; }
-
-    .letter::-webkit-scrollbar-thumb {
-
-      background: rgba(0,0,0,0.15);
-
-      border-radius: 6px;
-
-    }
-
+    body {
+        background-color: #ffe6f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+    }
+    .envelope {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        background: #ff99cc;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .flap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: #ff66b3;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        transform-origin: top;
+        transition: transform 1s ease;
+        z-index: 2;
+    }
+    .letter {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background: white;
+        padding: 20px;
+        box-sizing: border-box;
+        transform: translateY(100%);
+        transition: transform 1s ease 0.5s;
+        text-align: center;
+        font-size: 18px;
+
+        /* ADDED: make the letter scrollable when its content overflows */
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+    }
+    .envelope.open .flap {
+        transform: rotateX(-180deg);
+    }
+    .envelope.open .letter {
+        transform: translateY(0);
+    }
+    button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background: #ff66b3;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    /* Optional: light custom scrollbar for WebKit browsers */
+    .letter::-webkit-scrollbar { width: 8px; }
+    .letter::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,0.15);
+      border-radius: 6px;
+    }
 </style>
-
 </head>
-
 <body>
+    <div>
+        <div class="envelope" id="envelope">
+            <div class="flap"></div>
+            <!-- ADDED tabindex so keyboard users can focus & scroll the letter -->
+            <div class="letter" tabindex="0">Happy New Year Liamm !!<br>
 
-    <div>
+           <br> I just wanna say tysm for being my friend twin you're like literally so goated and so cool and so amazingu and thanks for always making me laugh. <br>
 
-        <div class="envelope" id="envelope">
+           <br> I'm really glad that even though we stopped talking for months you still never forgot about me nor did i forget about you <br>
 
-            <div class="flap"></div>
+           <br> I hope this new year gives you more blessings and may it be much more better than wtv happened in 2025 <br>
 
-            <!-- ADDED tabindex so keyboard users can focus & scroll the letter -->
+           <br>  I luh yuh so muh and that's all (⁠≧⁠▽⁠≦⁠) <br>
 
-            <div class="letter" tabindex="0">Happy New Year Liam!!<br><br>
-
-
-            <br>I just wanna say tysm for being my friend twin you're like literally so goated and so cool and so amazingu and thanks for always making me happy and laugh.<br>
-
-
-           <br> I'm really glad that even though we stopped talking for months you still never forgot about me nor did i forget about you<br>
-
-
-           <br> I hope this new year gives you more blessings and may it be much more better than wtv happened in 2025<br>
-
-
-           <br> I luh yuh so muh and that's all (⁠≧⁠▽⁠≦⁠)<br>
-
-
-                      <br><p> Sincerely, <br> Maee ^^</p></div>
-
-        </div>
-
-        <div style="text-align:center;">
-
-            <button onclick="openEnvelope()">Open 💌</button>
-
-        </div>
-
-    </div>
-
+                      <br><p>Sincerely,<br> Mae^^ </p><br></div>
+        </div>
+        <div style="text-align:center;">
+            <button onclick="openEnvelope()">Open 💌</button>
+        </div>
+    </div>
 
 <script>
-
-    function openEnvelope() {
-
-        document.getElementById("envelope").classList.toggle("open");
-
-    }
-
+    function openEnvelope() {
+        document.getElementById("envelope").classList.toggle("open");
+    }
 </script>
-
 </body>
-
 </html>
-
