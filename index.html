@@ -38,10 +38,10 @@
       box-shadow:0 6px 18px rgba(0,0,0,0.25);
     }
     .btn:active{transform:translateY(1px)}
-    /* ensure the canvas we add doesn't block pointer events */
+    
     canvas.confetti-canvas{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:9999}
 
-    /* Modal styles */
+    
     .modal {
       position:fixed;
       inset:0;
@@ -108,16 +108,15 @@
 <body>
   <div class="card">
     <h1>Happy New Year 🎆</h1>
-    <p>To someone special — click or tap anywhere and enjoy a little confetti surprise. <span style="display:inline-block;margin-left:6px">❤️</span></p>
-    <p class="hint">Tap, click, or press anywhere on the screen.</p>
+    <p>A lil new year gift for good old you. <span style="display:inline-block;margin-left:6px">❤️</span></p>
+    <p class="hint">Click mo yung screen:)</p>
 
-    <!-- Button to open the letter modal -->
     <div style="margin-top:12px">
       <button id="openLetter" class="btn" aria-haspopup="dialog" aria-controls="letterModal">Read my letter</button>
     </div>
   </div>
 
-  <!-- Modal / Letter -->
+ 
   <div id="letterModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" data-open="false">
     <div class="modal-dialog" role="document">
       <div class="modal-header">
@@ -142,9 +141,9 @@
 
   <script src="confetti.js"></script>
   <script>
-    // Hook UI interactions to the confetti script
+    
     (function(){
-      // Prevent double-firing on touch devices: ignore click events that happen shortly after touchstart
+      
       let lastTouchTime = 0;
 
       function handlePointer(x, y){ if(typeof spawnConfetti === 'function') spawnConfetti(x, y); }
@@ -156,12 +155,12 @@
       }, {passive:true});
 
       document.addEventListener('click', function(ev){
-        // ignore click if it closely follows a touch (prevents duplicate)
+        
         if(Date.now() - lastTouchTime < 600) return;
         handlePointer(ev.clientX, ev.clientY);
       });
 
-      // Also support keyboard triggering for accessibility (center of viewport)
+     
       document.addEventListener('keydown', function(ev){
         if(ev.key === 'Enter' || ev.key === ' '){
           const cx = window.innerWidth/2;
@@ -171,7 +170,7 @@
       });
     })();
 
-    // Modal handling + confetti-on-reveal (auto-open on load)
+    
     (function(){
       const openBtn = document.getElementById('openLetter');
       const closeBtn = document.getElementById('closeLetter');
@@ -180,7 +179,7 @@
       function openModal(){
         modal.setAttribute('data-open','true');
         modal.setAttribute('aria-hidden','false');
-        // spawn a celebratory confetti burst in the center
+       
         try {
           if(typeof spawnConfetti === 'function'){
             const cx = window.innerWidth/2;
@@ -188,9 +187,9 @@
             spawnConfetti(cx, cy, {count: 60});
           }
         } catch(e){/* ignore if confetti not available */}
-        // lock body scroll for nicer experience (small devices)
+        
         document.body.style.overflow = 'hidden';
-        // move focus into modal
+       
         closeBtn.focus();
       }
 
@@ -211,17 +210,17 @@
         closeModal();
       });
 
-      // close when clicking outside the dialog
+      
       modal.addEventListener('click', function(e){
         if(e.target === modal) closeModal();
       });
 
-      // Esc to close
+      
       document.addEventListener('keydown', function(e){
         if(e.key === 'Escape' && modal.getAttribute('data-open') === 'true') closeModal();
       });
 
-      // Accessibility: keep focus inside modal while open (simple trap)
+      
       document.addEventListener('focus', function(ev){
         if(modal.getAttribute('data-open') === 'true' && !modal.contains(ev.target)){
           ev.stopPropagation();
@@ -229,10 +228,9 @@
         }
       }, true);
 
-      // Auto-open the letter modal when the page is loaded in a browser (so the letter is visible immediately)
-      // This will not affect viewing the file on GitHub (GitHub shows source instead of rendering the page).
+      
       try{
-        // Delay slightly so paint/layout completes and the confetti appears smoothly
+        
         setTimeout(openModal, 250);
       }catch(e){/* ignore */}
     })();
