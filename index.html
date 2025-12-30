@@ -1,106 +1,75 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<title>Happy New Year!!</title>
-<style>
-    body {
-        background-color: #ffe6f0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        font-family: Arial, sans-serif;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy New Year 🎉</title>
+  <style>
+    html,body{height:100%;margin:0}
+    body{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: linear-gradient(180deg,#0f172a,#001219);
+      color:#fff;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      -webkit-font-smoothing:antialiased;
+      text-align:center;
+      padding:24px;
+      overflow:hidden;
     }
-    .envelope {
-        position: relative;
-        width: 300px;
-        height: 200px;
-        background: #ff99cc;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    .card{
+      max-width:900px;
     }
-    .flap {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 50%;
-        background: #ff66b3;
-        clip-path: polygon(0 0, 100% 0, 50% 100%);
-        transform-origin: top;
-        transition: transform 1s ease;
-        z-index: 2;
-    }
-    .letter {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        height: 100%;
-        background: white;
-        padding: 20px;
-        box-sizing: border-box;
-        transform: translateY(100%);
-        transition: transform 1s ease 0.5s;
-        text-align: center;
-        font-size: 18px;
-
-        
-        overflow-y: auto;
-        overflow-x: hidden;
-        -webkit-overflow-scrolling: touch; 
-    }
-    .envelope.open .flap {
-        transform: rotateX(-180deg);
-    }
-    .envelope.open .letter {
-        transform: translateY(0);
-    }
-    button {
-        margin-top: 20px;
-        padding: 10px 20px;
-        background: #ff66b3;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-
-    
-    .letter::-webkit-scrollbar { width: 8px; }
-    .letter::-webkit-scrollbar-thumb {
-      background: rgba(0,0,0,0.15);
-      border-radius: 6px;
-    }
-</style>
+    h1{font-size:clamp(28px,6vw,68px);margin:0 0 8px}
+    p{margin:0 0 20px;color:rgba(255,255,255,0.85)}
+    .hint{font-size:14px;opacity:0.9}
+    a.heart{color:#ff3b81;text-decoration:none}
+    /* ensure the canvas we add doesn't block pointer events */
+    canvas.confetti-canvas{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+  </style>
 </head>
 <body>
-    <div>
-        <div class="envelope" id="envelope">
-            <div class="flap"></div>
-            
-            <div class="letter" tabindex="0">Happy New Year Liamm !!<br>
+  <div class="card">
+    <h1>Happy New Year 🎆</h1>
+    <p>To someone special — click or tap anywhere and enjoy a little confetti surprise. <span style="display:inline-block;margin-left:6px">❤️</span></p>
+    <p class="hint">Tap, click, or press anywhere on the screen.</p>
+  </div>
 
-           <br> I just wanna say tysm for being my friend twin you're like literally so goated and so cool and so amazingu and thanks for always making me laugh. <br>
+  <script src="confetti.js"></script>
+  <script>
+    // Hook UI interactions to the confetti script
+    (function(){
+      // Prevent double-firing on touch devices: ignore click events that happen shortly after touchstart
+      let lastTouchTime = 0;
 
-           <br> I'm really glad that even though we stopped talking for months you still never forgot about me nor did i forget about you <br>
+      function handlePointer(x, y){
+        if(typeof spawnConfetti === 'function') spawnConfetti(x, y);
+      }
 
-           <br> I hope this new year gives you more blessings and may it be much more better than wtv happened in 2025 <br>
+      document.addEventListener('touchstart', function(ev){
+        lastTouchTime = Date.now();
+        const t = ev.touches && ev.touches[0];
+        if(t){
+          handlePointer(t.clientX, t.clientY);
+        }
+      }, {passive:true});
 
-           <br>  I love youu so muh and that's all (⁠≧⁠▽⁠≦⁠) <br>
+      document.addEventListener('click', function(ev){
+        // ignore click if it closely follows a touch (prevents duplicate)
+        if(Date.now() - lastTouchTime < 600) return;
+        handlePointer(ev.clientX, ev.clientY);
+      });
 
-                      <br><p>Sincerely,<br> Mae^^ </p><br></div>
-        </div>
-        <div style="text-align:center;">
-            <button onclick="openEnvelope()">Open 💌</button>
-        </div>
-    </div>
-
-<script>
-    function openEnvelope() {
-        document.getElementById("envelope").classList.toggle("open");
-    }
-</script>
+      // Also support keyboard triggering for accessibility (center of viewport)
+      document.addEventListener('keydown', function(ev){
+        if(ev.key === 'Enter' || ev.key === ' '){
+          const cx = window.innerWidth/2;
+          const cy = window.innerHeight/2;
+          handlePointer(cx, cy);
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
